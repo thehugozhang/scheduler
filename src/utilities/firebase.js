@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import React, { useState, useEffect } from 'react';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, set } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -50,3 +50,7 @@ export const useData = (path, transform) => {
   
     return [data, loading, error];
   };
+
+  export const setData = (path, value) => (
+    set(ref(database, path), value)
+  );
